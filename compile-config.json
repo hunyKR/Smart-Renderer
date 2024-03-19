@@ -1,0 +1,6 @@
+{
+    "headFile": "head.html",
+    "container": "container.html",
+    "components": ["component1.html", "component2.html"],
+    "compiledFileName": "index.html"
+}
