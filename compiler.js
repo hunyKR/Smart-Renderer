@@ -1,6 +1,6 @@
 const fs = require("fs");
 const compileConfig = JSON.parse(
-  fs.readFileSync("../../compile-config.json", "utf-8")
+  fs.readFileSync("./compile-config.json", "utf-8")
 );
 const headCode = fs.readFileSync(compileConfig.headFile, "utf-8");
 const containerCode = fs.readFileSync(compileConfig.container, "utf-8");
