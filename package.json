@@ -1,0 +1,25 @@
+{
+  "name": "smart-renderer",
+  "version": "1.0.0",
+  "description": "README 파일 준비중",
+  "main": "compiler.js",
+  "scripts": {
+    "compile": "node compiler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunyKR/Smart-Renderer.git"
+  },
+  "keywords": [
+    "Rendering",
+    "Render",
+    "SPA",
+    "UI"
+  ],
+  "author": "hunykr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hunyKR/Smart-Renderer/issues"
+  },
+  "homepage": "https://github.com/hunyKR/Smart-Renderer#readme"
+}
