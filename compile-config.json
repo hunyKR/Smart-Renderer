@@ -1,5 +1,7 @@
 {
   "__COMMENTS__": [
+    "appRoot: 코드의 루트 디렉토리 경로 (선택)",
+    "componentRoot: 컴포넌트의 루트 디렉토리 경로 (선택)",
     "headFile: HTML의 <head> 태그에 들어갈 내용을 담고 있는 파일의 경로 (선택)",
     "htmlLang: html lang를 지정합니다. (선택)",
     "container: 컨테이너 파일의 경로",
@@ -7,6 +9,9 @@
     "compiledFileName: 컴파일될 파일의 경로"
   ],
 
+  "__WARNING__": "기본 설정은 샘플입니다. 환경에 맞게 바꿔 쓰세요.",
+  "appRoot": "../App/",
+  "componentRoot": "../App/Components/",
   "headFile": "head.html",
   "htmlLang": "en",
   "container": "container.html",
