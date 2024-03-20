@@ -8,6 +8,7 @@ const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFil
 const containerCode = fs.readFileSync(appRoot + compileConfig.container, "utf-8");
 globalThis.componentCode = "";
 globalThis.componentScript = "";
+const containerScript = containerCode.split("<script>")[1].split("</script>")[0];
 
 compileConfig.components.forEach((fileName) => {
   const componentCode = fs.readFileSync(componentRoot + fileName, "utf-8");
@@ -18,7 +19,6 @@ compileConfig.components.forEach((fileName) => {
   `;
   globalThis.componentScript += componentCode.split("<script>")[1].split("</script>")[0]
 });
-componentScript += containerCode.split("<script>")[1].split("</script>")[0]
 
 fs.writeFileSync(
   appRoot + compileConfig.compiledFileName,
@@ -39,6 +39,7 @@ fs.writeFileSync(
   <script src="https://cdn.jsdelivr.net/gh/hunyKR/Smart-Renderer/code.js"></script>
   <script>
     ${componentScript}
+    ${containerScript}
   </script>
   </html>
   `
