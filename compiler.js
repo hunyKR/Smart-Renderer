@@ -5,17 +5,17 @@ const compileConfig = JSON.parse(
 const code = fs.readFileSync('./code.js', 'utf-8')
 const appRoot = compileConfig.appRoot ? compileConfig.appRoot : './'
 const componentRoot = compileConfig.componentRoot ? compileConfig.componentRoot : './'
-const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFile, "utf-8");
-const containerCodeAll = fs.readFileSync(appRoot + compileConfig.container, "utf-8");
+const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFile + ".html", "utf-8");
+const containerCodeAll = fs.readFileSync(appRoot + compileConfig.container + ".html", "utf-8");
 const containerCode = containerCodeAll.split("<script>")[0]
 const containerScript = containerCodeAll.split("<script>")[1].split("</script>")[0];
 globalThis.componentCode = "";
 globalThis.componentScript = "";
 
 compileConfig.components.forEach((fileName) => {
-  const componentCode = fs.readFileSync(componentRoot + fileName, "utf-8");
+  const componentCode = fs.readFileSync(componentRoot + fileName + ".html", "utf-8");
   globalThis.componentCode += `
-    <component name="${fileName.split(".")[0]}">
+    <component name="${fileName.split("/")[fileName.split("/").length - 1]}">
         ${componentCode.split("<script>")[0]}
     </component>
   `;
@@ -23,7 +23,7 @@ compileConfig.components.forEach((fileName) => {
 });
 
 fs.writeFileSync(
-  appRoot + compileConfig.compiledFileName,
+  appRoot + compileConfig.compiledFileName + ".html",
   `
   <!DOCTYPE html>
   <html lang="${compileConfig.htmlLang ? compileConfig.htmlLang : "en"}">

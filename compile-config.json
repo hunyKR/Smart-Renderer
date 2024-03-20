@@ -12,9 +12,9 @@
   "__WARNING__": "기본 설정은 샘플입니다. 환경에 맞게 바꿔 쓰세요.",
   "appRoot": "../App/",
   "componentRoot": "../App/Components/",
-  "headFile": "head.html",
+  "headFile": "head",
   "htmlLang": "en",
-  "container": "container.html",
-  "components": ["component1.html", "component2.html"],
-  "compiledFileName": "index.html"
+  "container": "container",
+  "components": ["component1", "component2"],
+  "compiledFileName": "index"
 }
