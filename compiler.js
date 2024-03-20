@@ -5,10 +5,11 @@ const compileConfig = JSON.parse(
 const appRoot = compileConfig.appRoot ? compileConfig.appRoot : './'
 const componentRoot = compileConfig.componentRoot ? compileConfig.componentRoot : './'
 const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFile, "utf-8");
-const containerCode = fs.readFileSync(appRoot + compileConfig.container, "utf-8");
+const containerCodeAll = fs.readFileSync(appRoot + compileConfig.container, "utf-8");
+const containerCode = containerCodeAll.split("<script>")[0]
+const containerScript = containerCodeAll.split("<script>")[1].split("</script>")[0];
 globalThis.componentCode = "";
 globalThis.componentScript = "";
-const containerScript = containerCode.split("<script>")[1].split("</script>")[0];
 
 compileConfig.components.forEach((fileName) => {
   const componentCode = fs.readFileSync(componentRoot + fileName, "utf-8");
