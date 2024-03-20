@@ -2,7 +2,7 @@ const fs = require("fs");
 const compileConfig = JSON.parse(
   fs.readFileSync("./compile-config.json", "utf-8")
 );
-const headCode = fs.readFileSync(compileConfig.headFile, "utf-8");
+const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFile, "utf-8");
 const containerCode = fs.readFileSync(compileConfig.container, "utf-8");
 globalThis.componentCode = "";
 globalThis.componentScript = "";
@@ -22,9 +22,13 @@ fs.writeFileSync(
   compileConfig.compiledFileName,
   `
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang="${compileConfig.htmlLang ? compileConfig.htmlLang : "en"}">
   <head>
-    ${headCode}
+    ${headCode ? headCode : `
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Renderer App</title>
+    `}
   </head>
   <body>
     ${componentCode}
