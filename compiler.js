@@ -5,7 +5,7 @@ const compileConfig = JSON.parse(
 const appRoot = compileConfig.appRoot ? compileConfig.appRoot : './'
 const componentRoot = compileConfig.componentRoot ? compileConfig.componentRoot : './'
 const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFile, "utf-8");
-const containerCode = fs.readFileSync(compileConfig.container, "utf-8");
+const containerCode = fs.readFileSync(appRoot + compileConfig.container, "utf-8");
 globalThis.componentCode = "";
 globalThis.componentScript = "";
 
