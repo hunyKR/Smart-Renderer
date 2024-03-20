@@ -37,12 +37,15 @@ linkcomponentList.forEach((element) => {
   const onloadFunction = element.getAttribute("onloadfunction");
   const props = element.getAttribute("props");
   const children = element.getAttribute("children");
-  element.addEventListener("click", () => {
+  element.firstChild.id = "to-" + to;
+  element.outerHTML = element.innerHTML;
+  const button = document.getElementById("to-" + to);
+  button.addEventListener("click", () => {
     componentList.forEach((element) => {
       const componentName = element.getAttribute("name");
       if (componentName === to) {
-        area.innerHTML = `<${componentName} ${props && props}>${
-          children && children
+        area.innerHTML = `<${componentName} ${props ? props : ''}>${
+          children ? children : ''
         }</${componentName}>`;
         render();
         onloadFunction && globalThis[onloadFunction]();
