@@ -2,6 +2,7 @@ const fs = require("fs");
 const compileConfig = JSON.parse(
   fs.readFileSync("./compile-config.json", "utf-8")
 );
+const code = fs.readFileSync('./code.js', 'utf-8')
 const appRoot = compileConfig.appRoot ? compileConfig.appRoot : './'
 const componentRoot = compileConfig.componentRoot ? compileConfig.componentRoot : './'
 const headCode = compileConfig.headFile && fs.readFileSync(compileConfig.headFile, "utf-8");
@@ -37,8 +38,8 @@ fs.writeFileSync(
     ${componentCode}
     ${containerCode}
   </body>
-  <script src="https://cdn.jsdelivr.net/gh/hunyKR/Smart-Renderer/code.js"></script>
   <script>
+    ${code}
     ${componentScript}
     ${containerScript}
   </script>
