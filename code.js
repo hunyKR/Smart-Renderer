@@ -1,5 +1,5 @@
 const componentList = document.querySelectorAll("component");
-function render() {
+function resolve() {
   componentList.forEach((element) => {
     element.remove();
     const componentName = element.getAttribute("name");
@@ -28,12 +28,26 @@ function render() {
     });
   });
 }
-render();
+resolve();
+
+function render(to, area, onloadFunction, props, children){
+  const areaDOM = document.getElementById(area);
+  componentList.forEach((element) => {
+    const componentName = element.getAttribute("name");
+    if (componentName === to) {
+      areaDOM.innerHTML = `<${componentName} ${props ? props : ''}>${
+        children ? children : ''
+      }</${componentName}>`;
+      resolve();
+      onloadFunction && onloadFunction()
+    }
+  });
+}
 
 const linkcomponentList = document.querySelectorAll("linkcomponent");
 linkcomponentList.forEach((element) => {
   const to = element.getAttribute("to");
-  const area = document.getElementById(element.getAttribute("area"));
+  const area = element.getAttribute("area");
   const onloadFunction = element.getAttribute("onloadfunction");
   const props = element.getAttribute("props");
   const children = element.getAttribute("children");
@@ -41,15 +55,6 @@ linkcomponentList.forEach((element) => {
   element.outerHTML = element.innerHTML;
   const button = document.getElementById("to-" + to);
   button.addEventListener("click", () => {
-    componentList.forEach((element) => {
-      const componentName = element.getAttribute("name");
-      if (componentName === to) {
-        area.innerHTML = `<${componentName} ${props ? props : ''}>${
-          children ? children : ''
-        }</${componentName}>`;
-        render();
-        onloadFunction && globalThis[onloadFunction]();
-      }
-    });
+    render(to, area, globalThis[onloadFunction], props, children)
   });
 });
